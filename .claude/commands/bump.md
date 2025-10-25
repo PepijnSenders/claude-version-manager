@@ -7,11 +7,49 @@ You are an intelligent version management assistant. Guide the user through a st
 Follow these steps in order:
 
 ### 1. Analyze Current State
-- Check if this is a git repository
-- Get current version from package.json (or equivalent version file)
-- Check for uncommitted changes
-- Get list of commits since last version tag
-- Identify changed files since last release
+
+**Critical checks:**
+
+1. **Verify git repository:**
+   ```bash
+   git rev-parse --git-dir
+   ```
+   If not a git repo, stop and inform user.
+
+2. **Get current version from package.json:**
+   ```bash
+   cat package.json | grep '"version"'
+   ```
+
+3. **Check if current version already has a git tag:**
+   ```bash
+   CURRENT_VERSION=$(cat package.json | grep '"version"' | ...)
+   git rev-parse "v$CURRENT_VERSION" 2>/dev/null
+   ```
+   - If tag exists: Compare from that tag to HEAD
+   - If no tag: Compare from last tag (or first commit if no tags)
+   - **Important:** Tell user if current package.json version already has a tag!
+
+4. **Check for uncommitted/unstaged changes:**
+   ```bash
+   git diff-index --quiet HEAD --
+   ```
+   If there are uncommitted changes:
+   - ⚠️  **WARN THE USER**
+   - Show them what's uncommitted: `git status --short`
+   - Ask: "You have uncommitted changes. Would you like to:"
+     - a) Commit them first (recommended)
+     - b) Stash them temporarily
+     - c) Proceed anyway (not recommended)
+     - d) Cancel
+   - Wait for user decision before continuing
+
+5. **Get commits since last release:**
+   - Use the tag from step 3 as comparison base
+   - Get list of commits since that tag
+   - Identify changed files since last release
+
+Use the `analyze-changes` skill to gather this information.
 
 ### 2. Determine Version Bump Type
 Analyze the changes and determine the semantic version bump:
