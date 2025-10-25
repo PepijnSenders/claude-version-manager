@@ -14,30 +14,48 @@
 
 ## Installation
 
-### As a Claude Code Plugin
+### Via Plugin System (Recommended)
 
-1. Clone this repository to your Claude Code plugins directory:
+The easiest way to install is through Claude Code's plugin system:
 
 ```bash
-# Via Claude Code plugins directory
-cd ~/.config/claude-code/plugins  # or appropriate config directory
-git clone https://github.com/PepijnSenders/claude-version-manager.git
+# Add this repository as a marketplace
+/plugin marketplace add PepijnSenders/claude-version-manager
 
-# Or clone anywhere and symlink
-git clone https://github.com/PepijnSenders/claude-version-manager.git ~/plugins/claude-version-manager
-ln -s ~/plugins/claude-version-manager ~/.config/claude-code/plugins/version-manager
+# Install the plugin
+/plugin install version-manager
 ```
 
-2. Restart Claude Code or reload plugins
+After installation, restart Claude Code and the `/bump` command will be available!
 
-3. The `/bump` command will now be available in any project
+### Local Development Installation
 
-### Manual Installation (Copy .claude directory)
-
-Alternatively, copy the `.claude` directory to your project:
+For testing or contributing:
 
 ```bash
-cp -r claude-version-manager/.claude /path/to/your/project/
+# Clone the repository
+git clone https://github.com/PepijnSenders/claude-version-manager.git
+
+# Create a local marketplace
+cd claude-version-manager
+mkdir -p test-marketplace/.claude-plugin
+cat > test-marketplace/.claude-plugin/marketplace.json << 'EOF'
+{
+  "name": "test-marketplace",
+  "owner": {"name": "Local Dev"},
+  "plugins": [{
+    "name": "version-manager",
+    "source": "../claude-version-manager",
+    "description": "Version management plugin (local)"
+  }]
+}
+EOF
+
+# In Claude Code, add local marketplace
+/plugin marketplace add ./test-marketplace
+
+# Install from local marketplace
+/plugin install version-manager@test-marketplace
 ```
 
 ## Usage

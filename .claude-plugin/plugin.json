@@ -1,0 +1,14 @@
+{
+  "name": "version-manager",
+  "version": "1.0.0",
+  "description": "Intelligent version management with semantic versioning, changelog generation, and automated workflows. Analyzes git history, detects uncommitted changes, recommends version bumps, and generates meaningful changelogs.",
+  "author": {
+    "name": "Pepijn Senders",
+    "url": "https://github.com/PepijnSenders"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PepijnSenders/claude-version-manager"
+  },
+  "license": "MIT"
+}
