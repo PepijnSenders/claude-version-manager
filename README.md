@@ -19,14 +19,16 @@
 The easiest way to install is through Claude Code's plugin system:
 
 ```bash
-# Add this repository as a marketplace
+# Add the GitHub repository as a marketplace
 /plugin marketplace add PepijnSenders/claude-version-manager
 
-# Install the plugin
-/plugin install version-manager
+# Install the plugin (select "Install now" when prompted)
+/plugin install version-manager@version-manager-marketplace
+
+# Restart Claude Code
 ```
 
-After installation, restart Claude Code and the `/bump` command will be available!
+After restart, the `/bump` command and skills will be available in any project!
 
 ### Local Development Installation
 
