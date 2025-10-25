@@ -1,6 +1,0 @@
-{
-  "name": "analyze-changes",
-  "description": "Analyze git changes to determine semantic version bump type",
-  "interpreter": "bash",
-  "entry": "skill.sh"
-}

@@ -1,6 +1,0 @@
-{
-  "name": "generate-changelog",
-  "description": "Generate meaningful changelog entries from git history",
-  "interpreter": "bash",
-  "entry": "skill.sh"
-}
