@@ -39,43 +39,17 @@ This skill will:
 
 ## Instructions
 
-Run the changelog generator:
+You can run the changelog generator script:
 
 ```bash
-# Get version number
-NEW_VERSION="${1:-$(cat package.json | grep '"version"' | sed 's/.*"\(.*\)".*/\1/')}"
+# Generate for current version + 1 patch
+bash generate.sh
 
-# Get comparison base (current tag or last tag)
-CURRENT_VERSION=$(cat package.json | grep '"version"' | sed 's/.*"\(.*\)".*/\1/')
-CURRENT_TAG="v$CURRENT_VERSION"
-if git rev-parse "$CURRENT_TAG" >/dev/null 2>&1; then
-  LAST_TAG="$CURRENT_TAG"
-else
-  LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
-fi
-
-DATE=$(date +%Y-%m-%d)
-
-echo "## [$NEW_VERSION] - $DATE"
-echo ""
-
-# Parse commits and categorize
-git log $LAST_TAG..HEAD --oneline --no-decorate | while read line; do
-  HASH=$(echo "$line" | awk '{print $1}')
-  MSG=$(echo "$line" | cut -d' ' -f2-)
-
-  # Categorize based on patterns
-  if echo "$MSG" | grep -qiE '^feat|^feature|^add'; then
-    echo "ADDED: $MSG ($HASH)"
-  elif echo "$MSG" | grep -qiE '^fix|^bug'; then
-    echo "FIXED: $MSG ($HASH)"
-  elif echo "$MSG" | grep -qiE 'BREAKING|breaking change'; then
-    echo "BREAKING: $MSG ($HASH)"
-  else
-    echo "CHANGED: $MSG ($HASH)"
-  fi
-done
+# Or specify version explicitly
+bash generate.sh 2.0.0
 ```
+
+The script [generate.sh](generate.sh) handles all the formatting automatically.
 
 ## Output format
 

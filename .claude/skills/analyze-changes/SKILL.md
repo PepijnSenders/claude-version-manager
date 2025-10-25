@@ -40,44 +40,13 @@ This skill will:
 
 ## Instructions
 
-Run the analysis by checking:
+You can run the analysis script for automated analysis:
 
 ```bash
-# Get current version
-CURRENT_VERSION=$(cat package.json | grep '"version"' | head -1 | sed 's/.*"version": "\(.*\)".*/\1/')
-
-# Check if current version has a tag
-CURRENT_TAG="v$CURRENT_VERSION"
-if git rev-parse "$CURRENT_TAG" >/dev/null 2>&1; then
-  echo "Current version $CURRENT_VERSION already has tag $CURRENT_TAG"
-  COMPARISON_BASE="$CURRENT_TAG"
-else
-  COMPARISON_BASE=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
-fi
-
-# Check for uncommitted changes
-if ! git diff-index --quiet HEAD --; then
-  echo "⚠️ Warning: Uncommitted changes detected"
-  git status --short
-fi
-
-# Get commits since comparison base
-git log $COMPARISON_BASE..HEAD --oneline
-
-# Analyze commit patterns
-BREAKING=$(git log $COMPARISON_BASE..HEAD --grep="BREAKING\|!" --extended-regexp -i | wc -l)
-FEATURES=$(git log $COMPARISON_BASE..HEAD --grep="^feat\|^feature" --extended-regexp -i | wc -l)
-FIXES=$(git log $COMPARISON_BASE..HEAD --grep="^fix\|^bug" --extended-regexp -i | wc -l)
-
-# Recommend bump type
-if [ "$BREAKING" -gt 0 ]; then
-  echo "Recommend: MAJOR"
-elif [ "$FEATURES" -gt 0 ]; then
-  echo "Recommend: MINOR"
-else
-  echo "Recommend: PATCH"
-fi
+bash analyze.sh
 ```
+
+The script [analyze.sh](analyze.sh) performs all the analysis automatically.
 
 ## Output format
 
