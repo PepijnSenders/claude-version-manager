@@ -4,3 +4,4 @@ node_modules/
 .env
 .vscode/
 .idea/
+.claude/settings.local.json
