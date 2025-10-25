@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "version-manager",
-      "source": ".",
+      "source": "./",
       "description": "Intelligent version management with semantic versioning and changelog generation"
     }
   ]
