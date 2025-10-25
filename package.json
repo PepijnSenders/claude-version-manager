@@ -1,0 +1,31 @@
+{
+  "name": "claude-version-manager",
+  "version": "1.0.0",
+  "description": "Intelligent version management plugin for Claude Code with semantic versioning and changelog generation",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "plugin",
+    "version",
+    "semver",
+    "changelog",
+    "git",
+    "release"
+  ],
+  "author": "Pepijn Senders",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PepijnSenders/claude-version-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PepijnSenders/claude-version-manager/issues"
+  },
+  "homepage": "https://github.com/PepijnSenders/claude-version-manager#readme",
+  "files": [
+    ".claude"
+  ],
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0"
+  }
+}

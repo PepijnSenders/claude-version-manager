@@ -1,0 +1,22 @@
+{
+  "name": "version-manager",
+  "version": "1.0.0",
+  "description": "Intelligent version management with semantic versioning, changelog generation, and automated workflows",
+  "author": "Pepijn Senders",
+  "commands": [
+    {
+      "name": "bump",
+      "description": "Interactive version bump workflow with intelligent analysis"
+    }
+  ],
+  "skills": [
+    {
+      "name": "analyze-changes",
+      "description": "Analyze git changes and determine semantic version bump type"
+    },
+    {
+      "name": "generate-changelog",
+      "description": "Generate meaningful changelog entries from git history and file changes"
+    }
+  ]
+}
