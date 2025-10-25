@@ -1,13 +1,13 @@
 {
-  "name": "version-manager-marketplace",
+  "name": "claude-version-manager",
   "owner": {
     "name": "Pepijn Senders",
     "url": "https://github.com/PepijnSenders"
   },
   "plugins": [
     {
-      "name": "version-manager",
-      "source": "./",
+      "name": "claude-version-manager",
+      "source": "../",
       "description": "Intelligent version management with semantic versioning and changelog generation"
     }
   ]
