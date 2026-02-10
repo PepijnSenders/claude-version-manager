@@ -23,7 +23,7 @@ The easiest way to install is through Claude Code's plugin system:
 /plugin marketplace add PepijnSenders/claude-version-manager
 
 # Install the plugin (select "Install now" when prompted)
-/plugin install version-manager@version-manager-marketplace
+/plugin install claude-version-manager@claude-version-manager
 
 # Restart Claude Code
 ```
